@@ -1,0 +1,25 @@
+---
+title: "README"
+author: "Sara Colom"
+date: "`r Sys.Date()`"
+output: 
+  github_document:
+    df_print: kable
+---
+
+This repo contains the source function to generate one or two-way cross tab summary stats on the fly with `var_summarise()`
+
+# Installation
+
+Make sure you have `devtools` already installed and loaded.
+
+`install.packages("devtools")`
+
+```{r}
+library(devtools)
+
+#install_github("twitter/AnomalyDetection")
+```
+
+
+
