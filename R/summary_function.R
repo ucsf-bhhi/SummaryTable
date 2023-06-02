@@ -8,6 +8,7 @@ is_categorical <- function(var){
 # Generate counts and percent
 #' Generate table with summary statistics
 #'
+#' @importFrom magrittr %>%
 #' @param dat data.frame with data to summarise
 #' @param var variable or list of variables to summarise
 #' @param treatment variable to stratify summary variables by

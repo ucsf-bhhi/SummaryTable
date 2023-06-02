@@ -13,13 +13,10 @@ This repo contains the source function to generate one or two-way cross tab summ
 
 Make sure you have `devtools` already installed and loaded.
 
-`install.packages("devtools")`
+  - `install.packages("devtools")`
+  - `library(devtools)`
+  - `install_github("ucsf-bhhi/SummaryTable", host = "https://remotes.r-lib.org/reference/install_github.html")`
 
-```{r}
-library(devtools)
-
-install_github("ucsf-bhhi/SummaryTable ")
-```
 
 # Examples
 
@@ -33,8 +30,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+Read in library
+
+```{r}
 library(SummaryTable)
+library(dplyr)
 ```
 
 
@@ -45,6 +45,6 @@ library(SummaryTable)
 This is the output for `Sepal.Width` a continuous variable w/o stratification. Without any other sepcification, the function spits out the mean and SD.
 
 ```{r}
-var_summarise(dat = iris, var = "Sepal.Width")
+#var_summarise(dat = iris, var = "Sepal.Width")
 ```
 
