@@ -64,6 +64,6 @@ library(dplyr)
 This is the output for `Sepal.Width` a continuous variable w/o stratification. Without any other sepcification, the function spits out the mean and SD.
 
 ```{r}
-#var_summarise(dat = iris, var = "Sepal.Width")
+var_summarise(dat = iris, var = "Sepal.Width")
 ```
 
