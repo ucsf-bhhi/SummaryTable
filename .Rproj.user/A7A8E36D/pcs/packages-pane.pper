@@ -1,6 +1,6 @@
 {
     "installOptions": {
-        "installFromRepository": false,
+        "installFromRepository": true,
         "libraryPath": "C:/Users/scolom/AppData/Local/R/cache/R/renv/library/SummaryTable-e57eef06/R-4.2/x86_64-w64-mingw32",
         "installDependencies": true
     }

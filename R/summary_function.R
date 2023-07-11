@@ -114,7 +114,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", per, "%)", sep = "")) %>%
       dplyr::mutate(statistic = as.character(statistic)) %>%
-      dplyr::select(-per)
+      dplyr::select(-per) %>%
+      ungroup()
   }
 
   # Create table with descriptive statistics of categorical data with grouping var
@@ -140,7 +141,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", per, "%)", sep = "")) %>%
       dplyr::mutate(statistic = as.character(statistic)) %>%
-      dplyr::select(-per)
+      dplyr::select(-per) %>%
+      ungroup()
   }
 
   # Create table with descriptive statistics of continuous data with no grouping var
@@ -162,7 +164,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", sd, ")", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
-      dplyr::select(Variable, Label, statistic)
+      dplyr::select(Variable, Label, statistic) %>%
+      ungroup()
   }
 
   # Create table with descriptive statistics of continuous data with grouping var
@@ -186,7 +189,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", sd, ")", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
-      dplyr::select(Variable, Label, all_of(treatment), statistic)
+      dplyr::select(Variable, Label, all_of(treatment), statistic) %>%
+      ungroup()
   }
 
   # Create table with descriptive statistics of nonparametric data with no grouping var
@@ -209,7 +213,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " [", iqr1, ",", iqr2, "]", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
-      dplyr::select(Variable, Label, statistic)
+      dplyr::select(Variable, Label, statistic) %>%
+      ungroup()
   }
 
   # Create table with descriptive statistics of nonparametric data with grouping var
@@ -234,7 +239,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
       dplyr::mutate(statistic = paste(statistic, " [", iqr1, ",", iqr2, "]", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
-      dplyr::select(Variable, Label, all_of(treatment), statistic)
+      dplyr::select(Variable, Label, all_of(treatment), statistic) %>%
+      ungroup()
   }
 
   # Save output
