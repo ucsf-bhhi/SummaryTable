@@ -28,7 +28,7 @@ tidy_stats_table <- function(stats_table, var){
   stats_table %>%
     group_by(Variable) %>%
     group_modify(
-      ~tidy_stats_var(.x, var)
+      ~tidy_stats_var(.x, {{var}})
     ) %>%
     ungroup()
 
