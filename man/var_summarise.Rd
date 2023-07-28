@@ -4,7 +4,13 @@
 \alias{var_summarise}
 \title{Generate table with summary statistics}
 \usage{
-var_summarise(dat, var = NULL, treatment = NULL, nonparametric = NULL)
+var_summarise(
+  dat,
+  var = NULL,
+  treatment = NULL,
+  nonparametric = NULL,
+  complete_cases = TRUE
+)
 }
 \arguments{
 \item{dat}{data.frame with data to summarise}
