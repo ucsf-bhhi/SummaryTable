@@ -131,6 +131,13 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
         names_to = "Variable",
         values_to = "Label"
       ) %>%
+      {
+        if (complete_cases) {
+          filter(., !is.na(Label))
+        } else {
+          (.)
+        }
+      } %>%
       dplyr::group_by(Variable, Label, !!treat_quo) %>%
       summarise(
         statistic = n(),
