@@ -9,7 +9,8 @@ var_summarise(
   var = NULL,
   treatment = NULL,
   nonparametric = NULL,
-  complete_cases = TRUE
+  complete_cases = TRUE,
+  round_to = 2
 )
 }
 \arguments{

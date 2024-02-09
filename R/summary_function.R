@@ -17,9 +17,9 @@ is_categorical <- function(var) {
 #' @export
 #'
 #' @examples SummaryTable::var_summarise(iris, var = "Petal.Length", treatment = "Species")
-var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NULL, complete_cases = TRUE) {
+var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NULL, complete_cases = TRUE, round_to = 2) {
   if (missing(var)) {
-    var <- dat %>%
+    var <- dat |>
       dplyr::select(-{{ treatment }}) %>%
       names()
     message("No variables specified, all applicable variables will be used.")
@@ -111,7 +111,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       ) %>%
       ungroup(Label) %>%
       dplyr::mutate(per = (statistic / sum(statistic)) * 100) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", per, "%)", sep = "")) %>%
       dplyr::mutate(statistic = as.character(statistic)) %>%
       dplyr::select(-per) %>%
@@ -145,7 +145,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
       ) %>%
       ungroup(Label) %>%
       dplyr::mutate(per = (statistic / sum(statistic)) * 100) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", per, "%)", sep = "")) %>%
       dplyr::mutate(statistic = as.character(statistic)) %>%
       dplyr::select(-per) %>%
@@ -168,7 +168,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
         sd = sd(value, na.rm = T),
         .groups = "keep"
       ) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", sd, ")", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
       dplyr::select(Variable, Label, statistic) %>%
@@ -193,7 +193,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
         sd = sd(value, na.rm = T),
         .groups = "keep"
       ) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " (", sd, ")", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
       dplyr::select(Variable, Label, all_of(treatment), statistic) %>%
@@ -217,7 +217,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
         iqr2 = quantile(value, probs = 0.75, na.rm = T),
         .groups = "keep"
       ) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " [", iqr1, ",", iqr2, "]", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
       dplyr::select(Variable, Label, statistic) %>%
@@ -243,7 +243,7 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
         iqr2 = quantile(value, probs = 0.75, na.rm = T),
         .groups = "keep"
       ) %>%
-      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, 2))) %>%
+      dplyr::mutate(dplyr::across(where(is.numeric), ~ round(.x, round_to))) %>%
       dplyr::mutate(statistic = paste(statistic, " [", iqr1, ",", iqr2, "]", sep = "")) %>%
       dplyr::mutate(Label = "") %>%
       dplyr::select(Variable, Label, all_of(treatment), statistic) %>%
