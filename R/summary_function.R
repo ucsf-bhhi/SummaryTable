@@ -66,8 +66,8 @@ var_summarise <- function(dat, var = NULL, treatment = NULL, nonparametric = NUL
     names() %>%
     append(
       dat %>%
-        dplyr::select(-all_of(nonparametric)) %>%
         dplyr::select(all_of(var)) %>%
+        dplyr::select(-all_of(nonparametric)) %>%
         dplyr::select_if(is.integer) %>%
         names()
     )
